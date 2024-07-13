@@ -24,7 +24,7 @@ import java.util.concurrent.Executors
 
 class MainActivity : AppCompatActivity(), Detector.DetectorListener {
     private lateinit var binding: ActivityMainBinding
-    private val isFrontCamera = false
+    private var isFrontCamera = false
 
     private var preview: Preview? = null
     private var imageAnalyzer: ImageAnalysis? = null
@@ -66,13 +66,18 @@ class MainActivity : AppCompatActivity(), Detector.DetectorListener {
                     buttonView.setBackgroundColor(ContextCompat.getColor(baseContext, R.color.gray))
                 }
             }
+
+            switchCamera.setOnClickListener {
+                isFrontCamera = !isFrontCamera
+                bindCameraUseCases() // Restart camera with new lens facing
+            }
         }
     }
 
     private fun startCamera() {
         val cameraProviderFuture = ProcessCameraProvider.getInstance(this)
         cameraProviderFuture.addListener({
-            cameraProvider  = cameraProviderFuture.get()
+            cameraProvider = cameraProviderFuture.get()
             bindCameraUseCases()
         }, ContextCompat.getMainExecutor(this))
     }
@@ -84,10 +89,10 @@ class MainActivity : AppCompatActivity(), Detector.DetectorListener {
 
         val cameraSelector = CameraSelector
             .Builder()
-            .requireLensFacing(CameraSelector.LENS_FACING_BACK)
+            .requireLensFacing(if (isFrontCamera) CameraSelector.LENS_FACING_FRONT else CameraSelector.LENS_FACING_BACK)
             .build()
 
-        preview =  Preview.Builder()
+        preview = Preview.Builder()
             .setTargetAspectRatio(AspectRatio.RATIO_4_3)
             .setTargetRotation(rotation)
             .build()
