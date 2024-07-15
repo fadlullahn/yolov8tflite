@@ -50,6 +50,13 @@
         android:paddingVertical="4dp"
         app:layout_constraintBottom_toBottomOf="parent">
 
+        <Button
+            android:id="@+id/back_camera"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="home"
+            app:layout_constraintVertical_bias="0.5"/>
+
         <ToggleButton
             android:id="@+id/isGpu"
             android:background="@color/orange"
@@ -64,17 +71,15 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.5" />
 
-
         <Button
             android:id="@+id/switch_camera"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/ic_switch_camera"
+            android:text="switch"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintVertical_bias="0.5"/>
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

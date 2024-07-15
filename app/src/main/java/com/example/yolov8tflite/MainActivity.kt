@@ -1,11 +1,13 @@
 package com.example.yolov8tflite
 
 import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.Matrix
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.camera.core.AspectRatio
@@ -38,6 +40,15 @@ class MainActivity : AppCompatActivity(), Detector.DetectorListener {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        // Temukan tombol back_camera menggunakan ID-nya
+        val backButton: Button = findViewById(R.id.back_camera)
+
+        backButton.setOnClickListener {
+            // Buat Intent untuk memulai HomeActivity
+            val intent = Intent(this, HomeActivity::class.java)
+            startActivity(intent)
+        }
 
         cameraExecutor = Executors.newSingleThreadExecutor()
 
