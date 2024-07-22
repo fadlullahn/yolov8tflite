@@ -7,7 +7,7 @@
         android:id="@+id/text_app_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Deteksi Wajah YoloV8"
+        android:text="Deteksi Wajah"
         android:textSize="24sp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"/>
