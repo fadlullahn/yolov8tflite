@@ -200,6 +200,16 @@ class MainActivity : AppCompatActivity(), Detector.DetectorListener {
         }
     }
 
+//    override fun onDetect(boundingBoxes: List<BoundingBox>, inferenceTime: Long) {
+//        runOnUiThread {
+//            binding.inferenceTime.text = "${inferenceTime}ms"
+//            binding.overlay.apply {
+//                setResults(boundingBoxes)
+//                invalidate()
+//            }
+//        }
+//    }
+
     override fun onDetect(boundingBoxes: List<BoundingBox>, inferenceTime: Long) {
         runOnUiThread {
             binding.inferenceTime.text = "${inferenceTime}ms"
@@ -209,4 +219,5 @@ class MainActivity : AppCompatActivity(), Detector.DetectorListener {
             }
         }
     }
+
 }
